@@ -1,0 +1,26 @@
+{
+  "name": "home-assistant-3d-floorplan_by_ass",
+  "version": "2.9.9",
+  "description": "![Home Assistant 3D Floorplan preview](images/preview.png)",
+  "main": "Home-Assistant-3D-Floorplan.js",
+  "scripts": {
+    "build": "node build.js",
+    "build:watch": "node --watch build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xrist0s/home-assistant-3d-floorplan_by_ass.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/xrist0s/home-assistant-3d-floorplan_by_ass/issues"
+  },
+  "homepage": "https://github.com/xrist0s/home-assistant-3d-floorplan_by_ass#readme",
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "three": "^0.165.0"
+  }
+}
