@@ -339,7 +339,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
       if (this._isControlActive()) return;
       this._render();
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: registry lookup failed", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: registry lookup failed", error);
     }
   }
 
@@ -686,32 +686,32 @@ class HomeAssistant3DFloorplan extends HTMLElement {
 
   _storageKey() {
     const path = window.location?.pathname || "dashboard";
-    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan";
-    return `home-assistant-3d-floorplan:${this._hasMultipleFloors() ? "floors" : "markers"}${this._coordinateStorageSuffix()}:${path}:${cardKey}`;
+    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan-by-ass";
+    return `home-assistant-3d-floorplan-by-ass:${this._hasMultipleFloors() ? "floors" : "markers"}${this._coordinateStorageSuffix()}:${path}:${cardKey}`;
   }
 
   _zonesStorageKey() {
     const path = window.location?.pathname || "dashboard";
-    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan";
-    return `home-assistant-3d-floorplan:brightness-zones${this._coordinateStorageSuffix()}:${path}:${cardKey}`;
+    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan-by-ass";
+    return `home-assistant-3d-floorplan-by-ass:brightness-zones${this._coordinateStorageSuffix()}:${path}:${cardKey}`;
   }
 
   _displayStorageKey() {
     const path = window.location?.pathname || "dashboard";
-    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan";
-    return `home-assistant-3d-floorplan:display:${path}:${cardKey}`;
+    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan-by-ass";
+    return `home-assistant-3d-floorplan-by-ass:display:${path}:${cardKey}`;
   }
 
   _modelDefaultViewStorageKey() {
     const path = window.location?.pathname || "dashboard";
-    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan";
-    return `home-assistant-3d-floorplan:model-default-view${this._coordinateStorageSuffix()}:${path}:${cardKey}`;
+    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan-by-ass";
+    return `home-assistant-3d-floorplan-by-ass:model-default-view${this._coordinateStorageSuffix()}:${path}:${cardKey}`;
   }
 
   _presetsStorageKey() {
     const path = window.location?.pathname || "dashboard";
-    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan";
-    return `home-assistant-3d-floorplan:light-presets:${path}:${cardKey}`;
+    const cardKey = this._config.storage_key || this._config.title || "home-assistant-3d-floorplan-by-ass";
+    return `home-assistant-3d-floorplan-by-ass:light-presets:${path}:${cardKey}`;
   }
 
   _coordinateStorageSuffix() {
@@ -726,7 +726,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
       const value = localStorage.getItem(this._presetsStorageKey());
       return value ? JSON.parse(value) : {};
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: light presets could not be loaded", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: light presets could not be loaded", error);
       return {};
     }
   }
@@ -735,7 +735,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
     try {
       localStorage.setItem(this._presetsStorageKey(), JSON.stringify(this._config.light_presets || {}));
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: light presets could not be saved", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: light presets could not be saved", error);
     }
     this._refreshYamlExport();
   }
@@ -793,7 +793,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
           window.setTimeout(() => { if (status.textContent === "Imported!") status.textContent = ""; }, 2000);
         }
       } catch (err) {
-        console.error("home-assistant-3d-floorplan: settings import failed", err);
+        console.error("home-assistant-3d-floorplan-by-ass: settings import failed", err);
         if (status) status.textContent = "Import failed!";
       }
     };
@@ -807,7 +807,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
       const value = localStorage.getItem(this._storageKey());
       return value ? JSON.parse(value) : {};
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: saved marker layout could not be loaded", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: saved marker layout could not be loaded", error);
       return {};
     }
   }
@@ -818,7 +818,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
         this._floorMarkers[this._activeFloorId] = this._markers;
         localStorage.setItem(this._storageKey(), JSON.stringify(this._hasMultipleFloors() ? this._floorMarkers : this._markers));
       } catch (error) {
-        console.warn("home-assistant-3d-floorplan: marker layout could not be saved", error);
+        console.warn("home-assistant-3d-floorplan-by-ass: marker layout could not be saved", error);
       }
     }
     this._refreshYamlExport();
@@ -831,7 +831,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
       const value = localStorage.getItem(this._zonesStorageKey());
       return value ? JSON.parse(value) : {};
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: brightness zones could not be loaded", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: brightness zones could not be loaded", error);
       return {};
     }
   }
@@ -842,7 +842,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
         this._floorZones[this._activeFloorId] = this._zones;
         localStorage.setItem(this._zonesStorageKey(), JSON.stringify(this._hasMultipleFloors() ? this._floorZones : this._zones));
       } catch (error) {
-        console.warn("home-assistant-3d-floorplan: brightness zones could not be saved", error);
+        console.warn("home-assistant-3d-floorplan-by-ass: brightness zones could not be saved", error);
       }
     }
     this._refreshYamlExport();
@@ -971,7 +971,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
       const value = localStorage.getItem(this._displayStorageKey());
       return value ? JSON.parse(value) : {};
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: display settings could not be loaded", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: display settings could not be loaded", error);
       return {};
     }
   }
@@ -982,7 +982,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
     try {
       localStorage.setItem(this._displayStorageKey(), JSON.stringify(this._display));
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: display settings could not be saved", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: display settings could not be saved", error);
     }
   }
 
@@ -993,7 +993,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
       const value = localStorage.getItem(this._modelDefaultViewStorageKey());
       return value ? JSON.parse(value) : {};
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: default model view could not be loaded", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: default model view could not be loaded", error);
       return {};
     }
   }
@@ -1004,7 +1004,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
     try {
       localStorage.setItem(this._modelDefaultViewStorageKey(), JSON.stringify(this._modelDefaultViews));
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: default model view could not be saved", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: default model view could not be saved", error);
     }
     this._refreshYamlExport();
   }
@@ -1801,7 +1801,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
             this._refresh3DZoneOverlay();
             if (this._selectedMarkers.has(key)) this._refreshSelectedMarkerPanel();
           } catch (err) {
-            console.error("home-assistant-3d-floorplan: render params import failed", err);
+            console.error("home-assistant-3d-floorplan-by-ass: render params import failed", err);
           }
         };
         reader.readAsText(file);
@@ -4224,7 +4224,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
             this._refresh3DZoneOverlay();
             if (this._selectedMarkers.has(key)) this._refreshSelectedMarkerPanel();
           } catch (err) {
-            console.error("home-assistant-3d-floorplan: render params import failed", err);
+            console.error("home-assistant-3d-floorplan-by-ass: render params import failed", err);
           }
         };
         reader.readAsText(file);
@@ -4578,7 +4578,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
         }, 1600);
       }
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: YAML could not be copied", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: YAML could not be copied", error);
       if (status) status.textContent = "Copy failed";
     }
   }
@@ -5265,7 +5265,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
         requestAnimationFrame(() => this._focusMarker(pendingFocus.key || pendingFocus, pendingFocus.options || {}));
       }
     } catch (error) {
-      console.warn("home-assistant-3d-floorplan: 3D model could not be loaded", error);
+      console.warn("home-assistant-3d-floorplan-by-ass: 3D model could not be loaded", error);
       if (status) {
         status.hidden = false;
         status.textContent = `3D model could not be loaded: ${modelUrl}. ${error?.message || ""}`.trim();
@@ -10142,7 +10142,7 @@ class HomeAssistant3DFloorplan extends HTMLElement {
   }
 }
 
-customElements.define("home-assistant-3d-floorplan", HomeAssistant3DFloorplan);
+customElements.define("home-assistant-3d-floorplan-by-ass", HomeAssistant3DFloorplan);
 
 class HomeAssistant3DFloorplanEditor extends HTMLElement {
   constructor() {
@@ -10471,7 +10471,7 @@ class HomeAssistant3DFloorplanEditor extends HTMLElement {
     }
 
     if (applied.length) {
-      next.type = next.type || "custom:home-assistant-3d-floorplan";
+      next.type = next.type || "custom:home-assistant-3d-floorplan-by-ass";
       this._cleanupEmptyObjects(next);
       this._clearImportedLayoutStorage(this._config || {}, next, applied);
       options.beforeCommit?.(applied, next);
@@ -10489,19 +10489,19 @@ class HomeAssistant3DFloorplanEditor extends HTMLElement {
     configs.forEach((config) => {
       const hasFloors = Array.isArray(config.floors) && config.floors.length > 0;
       const path = window.location?.pathname || "dashboard";
-      const cardKey = config.storage_key || config.title || "home-assistant-3d-floorplan";
+      const cardKey = config.storage_key || config.title || "home-assistant-3d-floorplan-by-ass";
       const coordinateSuffixes = ["", this._coordinateStorageSuffixForConfig(config)];
       if (sections.has("markers") || sections.has("floors")) {
-        coordinateSuffixes.forEach((suffix) => removeKeys.add(`home-assistant-3d-floorplan:${hasFloors ? "floors" : "markers"}${suffix}:${path}:${cardKey}`));
+        coordinateSuffixes.forEach((suffix) => removeKeys.add(`home-assistant-3d-floorplan-by-ass:${hasFloors ? "floors" : "markers"}${suffix}:${path}:${cardKey}`));
       }
       if (sections.has("brightness_zones") || sections.has("floors")) {
-        coordinateSuffixes.forEach((suffix) => removeKeys.add(`home-assistant-3d-floorplan:brightness-zones${suffix}:${path}:${cardKey}`));
+        coordinateSuffixes.forEach((suffix) => removeKeys.add(`home-assistant-3d-floorplan-by-ass:brightness-zones${suffix}:${path}:${cardKey}`));
       }
       if (sections.has("default_view") || sections.has("floors")) {
-        coordinateSuffixes.forEach((suffix) => removeKeys.add(`home-assistant-3d-floorplan:model-default-view${suffix}:${path}:${cardKey}`));
+        coordinateSuffixes.forEach((suffix) => removeKeys.add(`home-assistant-3d-floorplan-by-ass:model-default-view${suffix}:${path}:${cardKey}`));
       }
       if (sections.has("light_presets")) {
-        removeKeys.add(`home-assistant-3d-floorplan:light-presets:${path}:${cardKey}`);
+        removeKeys.add(`home-assistant-3d-floorplan-by-ass:light-presets:${path}:${cardKey}`);
       }
     });
     removeKeys.forEach((key) => {
@@ -10859,7 +10859,7 @@ customElements.define("home-assistant-3d-floorplan-editor", HomeAssistant3DFloor
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "home-assistant-3d-floorplan",
-  name: "Home Assistant 3D Floorplan",
+  type: "home-assistant-3d-floorplan-by-ass",
+  name: "Home Assistant 3D Floorplan by ass",
   description: "Place Home Assistant entities directly on a 3D model.",
 });
